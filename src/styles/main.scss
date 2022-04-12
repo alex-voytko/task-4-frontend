@@ -1,0 +1,35 @@
+.navigation-container {
+  display: flex;
+  justify-content: space-between;
+  .user-bar-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.status {
+  &-online {
+    color: rgb(33, 107, 255);
+  }
+  &-offline {
+    color: rgb(159, 159, 159);
+  }
+}
+.loader {
+  display: flex;
+  justify-content: center;
+}
+.logout-btn {
+  margin-left: 10px;
+}
+
+@media screen and(min-width: 992px) {
+  .user-bar-container {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: end;
+  }
+  .container {
+    position: relative;
+  }
+}
