@@ -13,9 +13,7 @@ function AppBar() {
 
   const onLogOutHandler = () => {
     dispatch(authOperations.logOut({ _id: userId, isOnline: false }));
-    try {
-      navigate("/");
-    } catch (error) {}
+    navigate("/");
   };
 
   return (

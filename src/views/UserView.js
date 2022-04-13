@@ -1,10 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Table, Button } from "react-bootstrap";
 import _ from "lodash";
 import userOperations from "../redux/user-redux/user-operations";
 import authOperations from "../redux/auth-redux/auth-operations";
+import Title from "../components/Title";
+import Toolbar from "../components/Toolbar";
+import UserTable from "../components/UserTable";
 
 function UserView() {
   const dispatch = useDispatch();
@@ -15,7 +17,6 @@ function UserView() {
   const getItems = useSelector(state => state.users.items);
   const isLogined = useSelector(state => state.auth.loginedUser.token);
   const currentUserId = useSelector(state => state.auth.loginedUser.userId);
-  let counter = 1;
 
   const handleChange = useCallback(e => {
     const { dataset, id } = e.target;
@@ -82,77 +83,17 @@ function UserView() {
 
   return (
     <>
-      <>
-        <h2 className="mb-4">User List</h2>
-        <Button
-          variant="dark"
-          disabled={!markedItems.length ? true : false}
-          type="button"
-          onClick={onBlockClick}
-        >
-          Block
-        </Button>
-        <Button
-          variant="secondary"
-          disabled={!markedItems.length ? true : false}
-          type="button"
-          onClick={onBlockClick}
-        >
-          Unblock
-        </Button>
-        <Button
-          variant="danger"
-          disabled={!markedItems.length ? true : false}
-          type="button"
-          onClick={onDeleteClick}
-        >
-          Delete
-        </Button>
-      </>
-
-      <Table bordered size="sm">
-        <thead>
-          <tr>
-            <th>
-              <input
-                id="select-all"
-                type="checkbox"
-                onChange={handleChangeAll}
-              />
-            </th>
-            <th>#</th>
-            <th>Name</th>
-            <th>E-Mail</th>
-            <th>Sign Up Date</th>
-            <th>Last Visit</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(
-            ({ _id, name, email, signUpDate, lastVisit, isOnline }) => (
-              <tr key={_id} className="render-table">
-                <td className="checkboxes-list">
-                  <input
-                    data-id={counter - 1}
-                    id={_id}
-                    type="checkbox"
-                    onChange={handleChange}
-                  />
-                </td>
-                <td>{counter++}</td>
-                <td>{name}</td>
-                <td>{email}</td>
-                <td>{signUpDate}</td>
-                <td>{lastVisit}</td>
-                <td className={`status-${isOnline ? `online` : `offline`}`}>
-                  {isOnline ? "Online" : "Offline"}
-                </td>
-              </tr>
-            ),
-          )}
-        </tbody>
-      </Table>
+      <Title text="User List" />
+      <Toolbar
+        onBlockClick={onBlockClick}
+        onDeleteClick={onDeleteClick}
+        disabled={!markedItems.length ? true : false}
+      />
+      <UserTable
+        handleChange={handleChange}
+        handleChangeAll={handleChangeAll}
+        users={users}
+      />
     </>
   );
 }

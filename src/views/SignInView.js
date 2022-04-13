@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import authOperations from "../redux/auth-redux/auth-operations";
 import userOperations from "../redux/user-redux/user-operations";
 import Spinner from "../components/Loader";
+import Title from "../components/Title";
 
 function SignInView() {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function SignInView() {
 
   return (
     <>
-      <h2 className="mb-4">Sign In, please</h2>
+      <Title text="Sign In, please" />
       <Form onSubmit={onSubmitHandler}>
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>

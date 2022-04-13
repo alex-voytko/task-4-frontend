@@ -1,3 +1,13 @@
+body {
+  background: rgb(214, 222, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(214, 222, 255, 1) 0%,
+    rgba(237, 241, 255, 0.2637429971988795) 51%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
 .navigation-container {
   display: flex;
   justify-content: space-between;
@@ -31,5 +41,11 @@
   }
   .container {
     position: relative;
+  }
+}
+@media screen and(max-width: 767px) {
+  td,
+  th {
+    font-size: 14px;
   }
 }

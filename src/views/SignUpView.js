@@ -3,6 +3,7 @@ import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authOperations from "../redux/auth-redux/auth-operations";
+import Title from "../components/Title";
 
 function SignUpView() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function SignUpView() {
   });
   return (
     <>
-      <h2 className="mb-4">Sign Up, Please</h2>
+      <Title text="Sign Up, Please" />
       <Form onSubmit={onSubmitHandler}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
